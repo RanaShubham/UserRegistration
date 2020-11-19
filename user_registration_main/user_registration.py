@@ -5,33 +5,44 @@ class UserRegistration:
     #Regex patterns to match
     FIRST_NAME_PATTERN = "^[A-Z]{1}[a-z]{2,}$"
     LAST_NAME_PATTERN = "^[A-Z]{1}[a-z]{2,}$"
+    EMAIL_PATTERN = "^[a-z]{1,}([._+-][0-9]{1,})*[0-9]{0,}@([0-9]|[a-z]){1,}[.][a-z]{2,4}([.][a-z]{2,4}){0,1}$"
 
     @staticmethod
     def validate_user_data(pattern, user_input):
         '''
             Validates the input given by user.
 
-        :param pattern: Pattern
-        :type pattern: str
-        :param user_input: User input
-        :type user_input: str
-        :return: None
-        :rtype: None
+            :param pattern: Pattern
+            :type pattern: str
+            :param user_input: User input
+            :type user_input: str
+            :return: None
+            :rtype: None
         '''
         if not user_input:
             raise InvalidUserDataException("Field cannot be null.")
         if user_input.isspace():
            raise InvalidUserDataException("Field cannot be empty.")
-        match_object = re.fullmatch(pattern, user_input)
+        match_object = re.search(pattern, user_input)
         if not match_object:
             raise InvalidUserDataException("Invalid data entered.")
+        else:
+            print("Seems fine.")
         return "happy"
 
 def driver_function():
+    '''
+        Driver function to execute when running this program directly.
+
+        :return: None
+        :rtype: None
+    '''
     first_name = input("Enter first name: ")
     UserRegistration.validate_user_data(UserRegistration.FIRST_NAME_PATTERN, first_name)
     last_name = input("Enter last name: ")
     UserRegistration.validate_user_data(UserRegistration.LAST_NAME_PATTERN, last_name)
+    email = input("Enter email: ")
+    UserRegistration.validate_user_data(UserRegistration.EMAIL_PATTERN, email)
 
 if  __name__ ==  "__main__":
     driver_function()
