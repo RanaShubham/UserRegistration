@@ -2,8 +2,9 @@ import re
 from users_registration.user_registration_main.invalid_user_exception import InvalidUserDataException
 
 class UserRegistration:
-
+    #Regex patterns to match
     FIRST_NAME_PATTERN = "^[A-Z]{1}[a-z]{2,}$"
+    LAST_NAME_PATTERN = "^[A-Z]{1}[a-z]{2,}$"
 
     @staticmethod
     def validate_user_data(pattern, user_input):
@@ -24,10 +25,13 @@ class UserRegistration:
         match_object = re.fullmatch(pattern, user_input)
         if not match_object:
             raise InvalidUserDataException("Invalid data entered.")
+        return "happy"
 
 def driver_function():
-    first_name = input("Input first name: ")
+    first_name = input("Enter first name: ")
     UserRegistration.validate_user_data(UserRegistration.FIRST_NAME_PATTERN, first_name)
+    last_name = input("Enter last name: ")
+    UserRegistration.validate_user_data(UserRegistration.LAST_NAME_PATTERN, last_name)
 
 if  __name__ ==  "__main__":
     driver_function()
