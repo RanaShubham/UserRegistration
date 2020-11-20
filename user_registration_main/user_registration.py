@@ -6,6 +6,7 @@ class UserRegistration:
     FIRST_NAME_PATTERN = "^[A-Z]{1}[a-z]{2,}$"
     LAST_NAME_PATTERN = "^[A-Z]{1}[a-z]{2,}$"
     EMAIL_PATTERN = "^[a-z]{1,}([._+-][0-9]{1,})*[0-9]{0,}@([0-9]|[a-z]){1,}[.][a-z]{2,4}([.][a-z]{2,4}){0,1}$"
+    PHONE_NUMBER_PATTERN = "^(91 ){0,1}[7-9][0-9]{9}$"
 
     @staticmethod
     def validate_user_data(pattern, user_input):
@@ -21,13 +22,12 @@ class UserRegistration:
         '''
         if not user_input:
             raise InvalidUserDataException("Field cannot be null.")
+        user_input = str(user_input)
         if user_input.isspace():
            raise InvalidUserDataException("Field cannot be empty.")
         match_object = re.search(pattern, user_input)
         if not match_object:
             raise InvalidUserDataException("Invalid data entered.")
-        else:
-            print("Seems fine.")
         return "happy"
 
 def driver_function():
@@ -43,6 +43,8 @@ def driver_function():
     UserRegistration.validate_user_data(UserRegistration.LAST_NAME_PATTERN, last_name)
     email = input("Enter email: ")
     UserRegistration.validate_user_data(UserRegistration.EMAIL_PATTERN, email)
+    phone_no:str = input("Enter valid phone number: ")
+    UserRegistration.validate_user_data(UserRegistration.PHONE_NUMBER_PATTERN, phone_no)
 
 if  __name__ ==  "__main__":
     driver_function()
