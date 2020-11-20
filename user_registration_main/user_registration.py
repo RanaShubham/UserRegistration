@@ -7,6 +7,7 @@ class UserRegistration:
     LAST_NAME_PATTERN = "^[A-Z]{1}[a-z]{2,}$"
     EMAIL_PATTERN = "^[a-z]{1,}([._+-][0-9]{1,})*[0-9]{0,}@([0-9]|[a-z]){1,}[.][a-z]{2,4}([.][a-z]{2,4}){0,1}$"
     PHONE_NUMBER_PATTERN = "^(91 ){0,1}[7-9][0-9]{9}$"
+    PASSWORD_PATTERN = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d@$!%*?&]{8,}$"
 
     @staticmethod
     def validate_user_data(pattern, user_input):
@@ -45,6 +46,8 @@ def driver_function():
     UserRegistration.validate_user_data(UserRegistration.EMAIL_PATTERN, email)
     phone_no:str = input("Enter valid phone number: ")
     UserRegistration.validate_user_data(UserRegistration.PHONE_NUMBER_PATTERN, phone_no)
+    password = input("Enter password: ")
+    UserRegistration.validate_user_data(UserRegistration.PASSWORD_PATTERN, password)
 
 if  __name__ ==  "__main__":
     driver_function()
