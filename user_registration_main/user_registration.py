@@ -18,8 +18,8 @@ class UserRegistration:
             :type pattern: str
             :param user_input: User input
             :type user_input: str
-            :return: None
-            :rtype: None
+            :return: True
+            :rtype: Bool
         '''
         if not user_input:
             raise InvalidUserDataException("Field cannot be null.")
@@ -29,7 +29,7 @@ class UserRegistration:
         match_object = re.search(pattern, user_input)
         if not match_object:
             raise InvalidUserDataException("Invalid data entered.")
-        return "happy"
+        return True
 
 def driver_function():
     '''
