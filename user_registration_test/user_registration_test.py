@@ -112,3 +112,8 @@ def test_validate_user_data_when_invalid_password_with_no_number_should_return_t
     with pytest.raises(InvalidUserDataException) as error_type:
         UserRegistration.validate_user_data(UserRegistration.PASSWORD_PATTERN, "atqpqwqw$")
     assert error_type.value.__str__() == "Invalid data entered.", "Failed because no exception was raised."
+
+def test_validate_user_data_when_invalid_password_with_no_specail_char_should_return_throw_InvalidUserDataException():
+    with pytest.raises(InvalidUserDataException) as error_type:
+        UserRegistration.validate_user_data(UserRegistration.PASSWORD_PATTERN, "atqpqwqw8")
+    assert error_type.value.__str__() == "Invalid data entered.", "Failed because no exception was raised."
