@@ -97,3 +97,8 @@ def test_validate_user_data_when_invalid_phone_should_return_throw_InvalidUserDa
 def test_validate_user_data_when_entered_valid_password_should_return_str_happy():
     return_value = UserRegistration.validate_user_data(UserRegistration.PASSWORD_PATTERN, "atqp3377M@")
     assert  return_value == "happy"
+
+def test_validate_user_data_when_invalid_password_with_less_than_eight_chars_should_return_throw_InvalidUserDataException():
+    with pytest.raises(InvalidUserDataException) as error_type:
+        UserRegistration.validate_user_data(UserRegistration.PASSWORD_PATTERN, "Atqp#$")
+    assert error_type.value.__str__() == "Invalid data entered."
